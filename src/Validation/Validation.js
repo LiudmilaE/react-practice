@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 const validation = (props) => {
     return <p> {props.length > 10 ? "Text long enough" : "Text too short"} </p>
