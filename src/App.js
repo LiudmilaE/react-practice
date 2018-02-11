@@ -21,15 +21,16 @@ class App extends Component {
       text: event.target.value
     })
   }
-  // removeCharHandler = (index) => {
-  //   this.setState(prevState => {
-  //     let oldtext = prevState.text.split('')
-  //     console.log(oldtext)
-  //     return {
-  //       text: index ? oldtext.splice(index).join('') : oldtext.shift().join('')
-  //     }
-  //   })
-  // }
+  removeCharHandler = (index) => {
+    this.setState(prevState => {
+      let oldtext = prevState.text.split('')
+      index ? oldtext.splice(index,1) : oldtext.shift()
+      console.log(oldtext)
+      return {
+        text: oldtext.join('')
+      }
+    })
+  }
   
   render() {
     const arrChar = Array.from(this.state.text)
@@ -55,7 +56,8 @@ class App extends Component {
         <Validation />
         { arrChar.map( (char, index) => (
             <CharComponent 
-              char={ char } 
+              char={ char }
+              key = {index+char} 
               removeChar={ () => this.removeCharHandler(index) }/>
             ) 
           )}
