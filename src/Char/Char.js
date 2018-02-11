@@ -1,10 +1,10 @@
 import React from 'react'
-import './charComponent.css'
+import './Char.css'
 
-const charComponent = (props) => {
+const char = (props) => {
     return (
         <div className="Char" onClick={props.removeChar}>{props.char}</div>
     )
 }
 
-export default charComponent
+export default char

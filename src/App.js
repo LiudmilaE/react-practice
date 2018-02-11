@@ -3,7 +3,7 @@ import './App.css'
 import UserOutput from './UserOutput/UserOutput'
 import UserInput from './UserInput/UserInput'
 import Validation from './Validation/Validation'
-import CharComponent from './CharComponent/charComponent'
+import Char from './Char/Char'
 
 class App extends Component {
   state = {
@@ -25,7 +25,6 @@ class App extends Component {
     this.setState(prevState => {
       let oldtext = prevState.text.split('')
       index ? oldtext.splice(index,1) : oldtext.shift()
-      console.log(oldtext)
       return {
         text: oldtext.join('')
       }
@@ -55,7 +54,7 @@ class App extends Component {
         <p> You entered { this.state.text.length } character(s)</p>
         <Validation />
         { arrChar.map( (char, index) => (
-            <CharComponent 
+            <Char 
               char={ char }
               key = {index+char} 
               removeChar={ () => this.removeCharHandler(index) }/>
