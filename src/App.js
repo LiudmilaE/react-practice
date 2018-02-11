@@ -24,7 +24,7 @@ class App extends Component {
   removeCharHandler = (index) => {
     this.setState(prevState => {
       let oldtext = prevState.text.split('')
-      index ? oldtext.splice(index,1) : oldtext.shift()
+      index ? oldtext.splice(index, 1) : oldtext.shift()
       return {
         text: oldtext.join('')
       }
@@ -32,7 +32,13 @@ class App extends Component {
   }
   
   render() {
-    const arrChar = Array.from(this.state.text)
+    let charList =  this.state.text.split('').map( (char, index) => (
+      <Char 
+        char={ char }
+        key = {index+char} 
+        removeChar={ () => this.removeCharHandler(index) }/>
+      ) 
+    )
 
     return (
       <div className="App">
@@ -53,13 +59,7 @@ class App extends Component {
         </label>
         <p> You entered { this.state.text.length } character(s)</p>
         <Validation />
-        { arrChar.map( (char, index) => (
-            <Char 
-              char={ char }
-              key = {index+char} 
-              removeChar={ () => this.removeCharHandler(index) }/>
-            ) 
-          )}
+        {charList}
       </div>
     );
   }
