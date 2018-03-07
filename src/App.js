@@ -58,11 +58,15 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to My React App</h1>
         </header>
-        <div style={{margin: 'auto', width: '80%'}}>
-          <UserRadioButtons 
-            list={this.state.radioButtons}
-            onChange={this.radioButtonHandler}
-            selectedOption={this.state.selectedOption}/>
+        <div className={"App-container"}>
+          <section style={{ margin: 'auto'}}>
+            <p>Please, make your choice!</p>
+            <UserRadioButtons 
+              list={this.state.radioButtons}
+              onChange={this.radioButtonHandler}
+              selectedOption={this.state.selectedOption}/>
+            {!!this.state.selectedOption && "You chose " + this.state.selectedOption }
+          </section>
         </div>
         <UserOutput name={ this.state.username } />
         <UserOutput name="Raphael" />
