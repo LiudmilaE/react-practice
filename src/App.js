@@ -1,26 +1,32 @@
-import React, { Component } from 'react'
-import './App.css'
-import UserOutput from './UserOutput/UserOutput'
-import UserInput from './UserInput/UserInput'
-import Validation from './Validation/Validation'
-import Char from './Char/Char'
+import React, { Component } from 'react';
+import './App.css';
+import UserOutput from './UserOutput/UserOutput';
+import UserInput from './UserInput/UserInput';
+import Validation from './Validation/Validation';
+import Char from './Char/Char';
+import UserRadioButtons from './UserRadioButton/UserRadioButtons';
 
 class App extends Component {
   state = {
     username: "Liuda",
     text: '',
+    selectedOption: null,
+    radioButtons: [
+      {id: 1, tag: "user", descriptions: "Пользователь"},
+      {id: 2, tag: 'admin', descriptions: "Администратор"}
+  ]
   }
 
   changeNameHandler = (event) => {
     this.setState({
       username: event.target.value,
     })
-  }
+  };
   changeTextHandler = (event) => {
     this.setState({
       text: event.target.value
     })
-  }
+  };
   removeCharHandler = (index) => {
     this.setState(prevState => {
       let oldtext = prevState.text.split('')
@@ -28,6 +34,13 @@ class App extends Component {
       return {
         text: oldtext.join('')
       }
+    })
+  };
+  radioButtonHandler = (event) => {
+    event.preventDefault();
+    console.log(event.target.value)
+    this.setState({
+      selectedOption: event.target.value
     })
   }
   
@@ -45,6 +58,12 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to My React App</h1>
         </header>
+        <div style={{margin: 'auto', width: '80%'}}>
+          <UserRadioButtons 
+            list={this.state.radioButtons}
+            onChange={this.radioButtonHandler}
+            selectedOption={this.state.selectedOption}/>
+        </div>
         <UserOutput name={ this.state.username } />
         <UserOutput name="Raphael" />
         <UserInput 
